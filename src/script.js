@@ -1,5 +1,7 @@
-import './style.css';
 import * as THREE from 'three';
+import gsap from 'gsap';
+
+import './style.css';
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl');
@@ -30,22 +32,28 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 
-const clock = new THREE.Clock();
+// const clock = new THREE.Clock();
+
+// Has its own tick
+gsap.to(mesh.position, { duration: 1, delay: 1, x: 2 });
+gsap.to(mesh.position, { duration: 1, delay: 2, x: 0 });
 
 // ANIMATIONS
 const tick = () => {
   //   // It's called just once
   //   console.log('Tick ');
 
-  const elapsedTime = clock.getElapsedTime();
-  console.log(elapsedTime);
+  // const elapsedTime = clock.getElapsedTime();
+  // console.log(elapsedTime);
 
   //   Update Objects
+  // camera.position.y = ;
+  // camera.position.x = ;
   // mesh.rotation.x = elapsedTime * Math.PI;
   // mesh.rotation.z = elapsedTime * Math.PI;
-  camera.position.y = Math.sin(elapsedTime);
-  camera.position.x = Math.cos(elapsedTime);
-  camera.lookAt(mesh.position);
+  // camera.position.y = Math.sin(elapsedTime);
+  // camera.position.x = Math.cos(elapsedTime);
+  // camera.lookAt(mesh.position);
 
   // Renderer
   renderer.render(scene, camera);
