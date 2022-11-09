@@ -9,7 +9,7 @@ const scene = new THREE.Scene();
 
 // Object
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
@@ -30,14 +30,20 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 
+let time = Date.now();
+
 // ANIMATIONS
 const tick = () => {
   //   // It's called just once
   //   console.log('Tick ');
 
+  const currentTime = Date.now();
+  const deltaTime = currentTime - time;
+  time = currentTime;
+
   //   Update Objects
-  mesh.rotation.x += 0.01;
-  mesh.rotation.z += 0.01;
+  mesh.rotation.x += 0.005 * deltaTime;
+  mesh.rotation.z += 0.005 * deltaTime;
 
   // Renderer
   renderer.render(scene, camera);
